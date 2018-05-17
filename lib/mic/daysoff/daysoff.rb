@@ -6,29 +6,31 @@ module Mic
     @arr_days_off = []
     @file_url = ENV['MIC_DAYS_OFF_YML_URL_FILE'].freeze
 
+    # call th on app startup
+    def self.initialize_dates_on_boot
+      @arr_days_off = get_dates
+    end
+
     #TODO code + tests
     def self.is_today_day_off?
       false
     end
 
-    #TODO Test
-    def self.reload_static_days_off
-      @arr_days_off = get_dates
-    end
+
+    #TODO next gem version
+    #TODO code + Test
+    # def self.reload_static_days_off
+    #   @arr_days_off = get_dates
+    # end
 
     def self.get_array_dates_debugg
       @arr_days_off
     end
 
-
-    #TODO code + tests
     def self.get_dates
       dates = get_dates_from_web
-      return dates unless []
-      dates = get_dates_from_config
-      return dates unless []
 
-      []
+      (dates != []) : dates ? get_dates_from_config
     end
 
     def self.get_dates_from_web

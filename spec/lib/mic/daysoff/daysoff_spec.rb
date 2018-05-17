@@ -15,6 +15,38 @@ RSpec.describe Mic::Daysoff do
 
   end
 
+  describe '#_get_dates' do
+    let(:online) {}
+    let(:local) {}
+
+    context 'file can be access on internet' do
+      let(:local) do
+        [
+          '2019-12-25',
+          '2018-12-25',
+          '2018-05-09',
+          '2018-05-08'
+        ]
+      end
+      let(:expected_result) do
+        [
+          '2019-12-25',
+          '2018-12-25',
+          '2018-05-09',
+          '2018-05-08'
+        ]
+      end
+
+      before do
+        
+      end
+
+      it 'return expected array' do
+        expect(described_class.get_dates()).to eq(expected_result)
+      end
+    end
+  end
+
   describe '#_get_dates_from_web' do
     context 'file can be access on internet' do
       let(:expected_result) do
