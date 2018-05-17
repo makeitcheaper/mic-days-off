@@ -1,5 +1,5 @@
 module Mic
   module Daysoff
-    VERSION = "0.0.0001"
+    VERSION = "0.0.0003"
   end
 end

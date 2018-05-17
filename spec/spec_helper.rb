@@ -1,6 +1,7 @@
 require 'bundler/setup'
 require 'webmock/rspec'
 require 'daysoff'
+require 'timecop'
 
 Bundler.setup
 
