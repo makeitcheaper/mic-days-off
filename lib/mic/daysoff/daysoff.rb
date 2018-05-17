@@ -30,7 +30,7 @@ module Mic
     def self.get_dates
       dates = get_dates_from_web
 
-      (dates != []) : dates ? get_dates_from_config
+      (dates != []) ? dates : get_dates_from_config
     end
 
     def self.get_dates_from_web
