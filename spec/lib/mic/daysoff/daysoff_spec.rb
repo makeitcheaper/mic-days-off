@@ -16,11 +16,38 @@ RSpec.describe Mic::Daysoff do
   end
 
   describe '#_get_dates_from_web' do
+    context 'file can be access on internet' do
+      let(:expected_result) do
+        [
+          '2019-12-25',
+          '2018-12-25',
+          '2018-05-09',
+          '2018-05-08'
+        ]
+      end
 
+      it 'return expected array' do
+        expect(described_class.get_dates_from_web()).to eq(expected_result)
+      end
+    end
+
+    context 'failed to access file on internet' do
+      let(:expected_result) do
+        []
+      end
+
+      before do
+        allow(YAML).to receive(:load).and_raise(OpenURI::HTTPError)
+      end
+
+      it 'return expected array' do
+        expect(described_class.get_dates_from_web()).to eq(expected_result)
+      end
+    end
   end
 
   describe '#_get_dates_from_config' do
-    context 'file if present on config' do
+    context 'file if present on config folder' do
       let(:expected_result) do
         [
           '2119-12-25',
@@ -30,7 +57,21 @@ RSpec.describe Mic::Daysoff do
         ]
       end
 
-      it 'return eepected array' do
+      it 'return expected array' do
+        expect(described_class.get_dates_from_config()).to eq(expected_result)
+      end
+    end
+
+    context 'no file on config folder' do
+      let(:expected_result) do
+        []
+      end
+
+      before do
+        allow(YAML).to receive(:load_file).and_raise(Errno::ENOENT)
+      end
+
+      it 'return expected array' do
         expect(described_class.get_dates_from_config()).to eq(expected_result)
       end
     end

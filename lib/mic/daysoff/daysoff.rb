@@ -4,6 +4,7 @@ require 'yaml'
 module Mic
   module Daysoff
     @arr_days_off = []
+    @file_url = ENV['MIC_DAYS_OFF_YML_URL_FILE'].freeze
 
     #TODO code + tests
     def self.is_today_day_off?
@@ -30,12 +31,19 @@ module Mic
       []
     end
 
-    #TODO code + tests
     def self.get_dates_from_web
-      #TODO
+      file = YAML.load(open(@file_url))
+      array = []
+      file['day-off'].each do |line|
+        array << line.to_s
+      end
+
+      array
+
+    rescue
+      []
     end
 
-    #TODO code + tests
     def self.get_dates_from_config
       root_dir = File.dirname(__FILE__).gsub('lib/mic/daysoff', '')
       file_location = root_dir + 'config/days-off.yml'
@@ -47,6 +55,7 @@ module Mic
       end
 
       array_backup
+
     rescue
       []
     end
