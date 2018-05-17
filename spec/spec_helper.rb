@@ -1,5 +1,5 @@
 require 'bundler/setup'
-require 'mic/daysoff'
+require 'daysoff'
 
 Bundler.setup
 

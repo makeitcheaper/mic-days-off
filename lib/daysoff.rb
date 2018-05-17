@@ -1,2 +1,2 @@
 require 'mic/daysoff/version'
-require 'mic/daysoff'
+require 'mic/daysoff/daysoff'
