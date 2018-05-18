@@ -9,18 +9,10 @@ to run you must setup env variable
 Gemfile add 'mic-daysoff'
     gem 'mic-daysoff', git: 'https://github.com/makeitcheaper/mic-days-off'
 
-Setup ENV variable `MIC_DAYS_OFF_YML_URL_FILE` with to your yml file url
+- Setup ENV variable `MIC_DAYS_OFF_YML_URL_FILE` with to your yml file url
+- Rails: `./config/application.rb` add `require 'daysoff'`
+- To load yml on startup, create for example './config/initializers/mic-daysoff.rb' and put followwing inside`Mic::Daysoff.reload_static_days_off`
 
-Rails: `/config/application.rb` add `require 'daysoff'` then call `Mic::Daysoff.reload_static_days_off` on the same file
-
-    module AppTest
-      class Application < Rails::Application
-        config.load_defaults = 42.3
-        config.zyx = zzzz
-
-        Mic::Daysoff.reload_static_days_off
-      end
-    end
 
 
 ## Usage

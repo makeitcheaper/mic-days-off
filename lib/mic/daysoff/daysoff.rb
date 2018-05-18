@@ -5,7 +5,7 @@ require 'yaml'
 module Mic
   module Daysoff
     @@arr_days_off = []
-
+ 
     def initialize
       @@arr_days_off = get_dates
     end
