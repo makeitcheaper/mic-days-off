@@ -23,6 +23,7 @@ Gemfile add 'mic-daysoff'
 Beta: `Mic::Daysoff.reload_static_days_off` reload static array be carefull
 
 ## TODO
+- Fix load local ./config/days-off.yml from Rails point of vue (work for local code on gem, not on rails app. see: ROOT_PATH on Rails)
 - make more method in private
 - fix on existing test
 - Write more test
